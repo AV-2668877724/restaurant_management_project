@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Note
+#Note API with ModelViewSet
 
 class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
