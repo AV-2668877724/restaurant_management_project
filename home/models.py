@@ -1,6 +1,14 @@
 from django.db import models
 from django.conf import settings
 
+
+class MenuCategory(models.Model):
+    name = modes.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Note(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
