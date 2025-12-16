@@ -1,4 +1,5 @@
 from rest_framework import viewsets, permissions
+from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 from .models import Note
@@ -21,5 +22,8 @@ class NoteViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Assign the logged in user as owner
         serializer.save(owner=self.request.user)
-        
+
+class MenuCategoryListView(ListAPIView):
+    querset=MenuCategory.object.all()
+    serializer_class = menuCategorySerializer
 
