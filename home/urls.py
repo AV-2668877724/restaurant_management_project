@@ -7,4 +7,5 @@ router.register(r'notes', NoteViewSet, basename='note')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('menu-categories/', MenuCategoryListView.as_view(),name='menu-categories'),
 ]
