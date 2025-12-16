@@ -2,6 +2,14 @@ from rest_framework import serializers
 from .models import Note
 #Note API with ModelViewSet
 
+
+class MenuCategorySerializer(serializer.ModelSerializer):
+    class Meta:
+        model= MenuCategorySerializer
+        field=['name']
+
+
+
 class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
