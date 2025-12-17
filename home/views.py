@@ -2,8 +2,8 @@ from rest_framework import viewsets, permissions
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
-from .models import Note
-from .serializers import NoteSerializer
+from .models import Note,MenuItem
+from .serializers import NoteSerializer,MenuCategorySerializer
 from .permissions import IsOwner
 
 class NoteViewSet(viewsets.ModelViewSet):
