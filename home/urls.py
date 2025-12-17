@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import NoteViewSet, FeaturedMenuItemListView
+from .views import NoteViewSet, FeaturedMenuItemListView, MenuCategoryListView
 from django.urls import path, include
 
 router = DefaultRouter()
