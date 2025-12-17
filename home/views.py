@@ -27,3 +27,7 @@ class MenuCategoryListView(ListAPIView):
     querset=MenuCategory.object.all()
     serializer_class = menuCategorySerializer
 
+class FeaturedMenuItemListView(ListAPIView):
+    queryset=MenuItem.objects.filter(is_features=True)
+    serializer_class= MenuItemSerializer
+
