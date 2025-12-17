@@ -1,9 +1,9 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
-from .models import Note,MenuItem
-from .serializers import NoteSerializer,MenuCategorySerializer
+from .models import Note,MenuItem,MenuCategory
+from .serializers import NoteSerializer,MenuCategorySerializer,MenuItemSerializer
 from .permissions import IsOwner
 
 class NoteViewSet(viewsets.ModelViewSet):
@@ -28,6 +28,9 @@ class MenuCategoryListView(ListAPIView):
     serializer_class = menuCategorySerializer
 
 class FeaturedMenuItemListView(ListAPIView):
-    queryset=MenuItem.objects.filter(is_features=True)
-    serializer_class= MenuItemSerializer
+
+    serializer_class = MenuItemSerializer
+    def get_queryset(self):
+        return MenuItem.objects.filter(is_features=True)
+    
 
