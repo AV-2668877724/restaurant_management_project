@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Note
+from .models import Note,MenuItem
 #Note API with ModelViewSet
 
 
@@ -8,7 +8,10 @@ class MenuCategorySerializer(serializer.ModelSerializer):
         model= MenuCategorySerializer
         field=['name']
 
-
+class MenuItemSerializer(serializers.ModeSerializer):
+    class Meta:
+        model = MenuItem
+        fields = ['id', 'name', 'price', 'is_featured']
 
 class NoteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
