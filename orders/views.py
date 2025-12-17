@@ -3,7 +3,12 @@ from rest_framework.response import response
 from rest_framework import status
 from django.utils import timezone
 
-from .models import Coupon
+from rest_framework.generics import ListAPIView
+from rest_framework,permissions import IsAuthenticated
+from rest_framework.authentication import tokenAuthentication, SessionAuthentication
+
+from .models import Coupon, Order
+from .serializers import OrderSerializer
 
 
 class CouponValidationView(APIView):
@@ -41,7 +46,13 @@ class CouponValidationView(APIView):
                 status=status.HTTP_200_OK
             )
 
-                
+class OrderHistoryView(ListAPIView):
+    serializer_class = OrderSerializer
+    permission_classes =[IsAuthenticated]
+    authentication_classes =[tokenAuthentication, SessionAuthentication]
+
+    def get_queryset(slef):
+        return Order.objects.filter(user=self.request.user)
             
 
 
